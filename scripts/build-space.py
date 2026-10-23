@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Build the self-contained Hugging Face Spaces preview using only Python's stdlib.
 
-The editable website stays in web/. The release contains two HTML pages with all
-styles, scripts, and artwork embedded, a Spaces README, and the project license.
+The editable website stays in web/. The release contains a single-document preview
+with an embedded field guide, a direct guide entry point, a Spaces README, and the
+project license. Every style, script, and artwork asset is embedded.
 No source file or robot configuration is changed by this command.
 """
 
@@ -24,6 +25,40 @@ ENGINE_IMPORT = re.compile(
     r"from\s+['\"]\./engine\.js['\"];?\s*\n",
     re.MULTILINE,
 )
+
+# Hash-only routing keeps the hosted preview and guide inside the same authorized
+# document. It does not read, copy, or change a hosting provider's query parameters.
+SPACE_ROUTER = r"""
+const spacePracticeView = document.getElementById('space-practice-view');
+const spaceGuideView = document.getElementById('space-guide-view');
+const spaceDefaultGuide = __DEFAULT_GUIDE__;
+function showSpaceRoute() {
+  const route = location.hash || (spaceDefaultGuide ? '#field-guide' : '#home');
+  const showGuide = route === '#field-guide' || route.startsWith('#field-guide-');
+  if (showGuide && spaceGuideView.hidden) void pauseExplorer('guide');
+  spacePracticeView.hidden = showGuide;
+  spaceGuideView.hidden = !showGuide;
+  document.title = showGuide
+    ? 'Your field guide — Curious Explorer'
+    : 'Curious Explorer — A little wonder, every day.';
+  requestAnimationFrame(() => {
+    let target = document.getElementById(route.slice(1));
+    if (showGuide && !target) target = document.getElementById('field-guide');
+    if (route === '#home') {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      target = spacePracticeView.querySelector('h1');
+    } else if (target) {
+      target.scrollIntoView({ block: 'start', behavior: 'instant' });
+    }
+    if (target) {
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    }
+  });
+}
+window.addEventListener('hashchange', showSpaceRoute);
+showSpaceRoute();
+"""
 
 
 def svg_url(path: Path) -> str:
@@ -62,9 +97,14 @@ class DependencyCheck(HTMLParser):
         self.errors: list[str] = []
         self.inline_scripts = 0
         self.inline_styles = 0
+        self.ids: set[str] = set()
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         values = dict(attrs)
+        if values.get("id"):
+            if values["id"] in self.ids:
+                self.errors.append(f"Duplicate element id: {values['id']}")
+            self.ids.add(values["id"])
         if tag == "script":
             if values.get("src"):
                 self.errors.append("An external script reference remains.")
@@ -83,24 +123,59 @@ class DependencyCheck(HTMLParser):
                 self.errors.append("An external icon reference remains.")
 
 
+def single_document_markup() -> str:
+    page = (WEB / "index.html").read_text(encoding="utf-8")
+    source_guide = (WEB / "guide.html").read_text(encoding="utf-8")
+    body = re.search(r"<body[^>]*>(.*?)</body>", source_guide, flags=re.DOTALL)
+    if not body:
+        raise ValueError("guide.html: expected a field guide body.")
+    guide = body.group(1)
+    guide_ids = {
+        name: "field-guide" if name == "guide" else "field-guide-" + name
+        for name in re.findall(r'\bid="([^"]+)"', guide)
+    }
+    guide = re.sub(r'\bid="([^"]+)"', lambda match: 'id="' + guide_ids[match[1]] + '"', guide)
+    guide = re.sub(
+        r'href="#([^"]+)"',
+        lambda match: 'href="#' + guide_ids.get(match[1], "field-guide-" + match[1]) + '"',
+        guide,
+    )
+    guide = guide.replace('class="brand" href="./"', 'class="brand" href="#home"')
+    guide = guide.replace('href="./"', 'href="#practice"')
+    page = re.sub(
+        r'href="guide\.html(?:#([^"]+))?"',
+        lambda match: 'href="#field-guide' + ("-" + match[1] if match[1] else "") + '"',
+        page,
+    )
+    page = page.replace('href="./"', 'href="#home"')
+    script_tag = '<script type="module" src="app.js"></script>'
+    if page.count(script_tag) != 1:
+        raise ValueError("index.html: expected exactly one app module reference.")
+    page = page.replace("<body>", '<body>\n<div id="space-practice-view">', 1)
+    page = page.replace(script_tag, '</div>\n<div id="space-guide-view" hidden>\n' + guide + '\n</div>\n' + script_tag)
+    return page
+
+
 def build_page(filename: str, style: str, script: str) -> str:
-    page = (WEB / filename).read_text(encoding="utf-8")
+    # guide.html remains a direct-entry fallback; both files have the same complete
+    # app and guide, and all in-product navigation stays in the current document.
+    page = single_document_markup()
     stylesheet = '<link rel="stylesheet" href="style.css">'
     if page.count(stylesheet) != 1:
         raise ValueError(f"{filename}: expected exactly one stylesheet reference.")
     page = page.replace(stylesheet, "<style>\n" + style + "\n</style>")
-    if filename == "index.html":
-        script_tag = '<script type="module" src="app.js"></script>'
-        if page.count(script_tag) != 1:
-            raise ValueError("index.html: expected exactly one app module reference.")
-        page = page.replace(script_tag, '<script type="module">\n' + script + "\n</script>")
+    script_tag = '<script type="module" src="app.js"></script>'
+    router = SPACE_ROUTER.replace("__DEFAULT_GUIDE__", "true" if filename == "guide.html" else "false")
+    page = page.replace(script_tag, '<script type="module">\n' + script + router + "\n</script>")
     page = inline_artwork(page)
     check = DependencyCheck()
     check.feed(page)
     if check.inline_styles != 1:
         check.errors.append("Expected exactly one embedded stylesheet.")
-    if check.inline_scripts != (1 if filename == "index.html" else 0):
+    if check.inline_scripts != 1:
         check.errors.append("Unexpected script count.")
+    if re.search(r'href="(?:\./|guide\.html|index\.html)(?:["#])', page):
+        check.errors.append("An in-product link would leave the current document.")
     if check.errors:
         raise ValueError(f"{filename}: " + " ".join(check.errors))
     return page
