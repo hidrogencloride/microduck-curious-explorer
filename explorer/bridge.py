@@ -1,4 +1,4 @@
-"""Local preview server and conservative Microduck JSON-RPC adapter.
+"""Local development API and conservative Microduck JSON-RPC adapter.
 
 Wire contract inspected against pollen-robotics/microduck API 44 on 2026-10-23:
 duck-ipc-proto/src/lib.rs, blob f64c7e1b3a4b090f5a167d88e98974f303c7d97c.
@@ -6,14 +6,13 @@ No firmware, policy configuration, controller binding, or account writes exist h
 """
 
 import argparse
-import functools
 import json
 import math
 import secrets
 import socket
 import threading
 import time
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -171,7 +170,7 @@ class ExplorerBridge:
         self.protocol = None
         self.last_refresh = 0.0
         self.last_attempt = -10.0
-        self.detail = "Browser character preview. No robot is connected."
+        self.detail = "Development API only. No robot is connected."
         self.closed = threading.Event()
         self.worker = threading.Thread(target=self._watch, daemon=True)
         self.worker.start()
@@ -208,7 +207,7 @@ class ExplorerBridge:
                 self.last_refresh = now
             self.detail = ("User-declared simulator. Explorer is active." if self.armed else
                            "User-declared simulator. Ready for an exclusive session." if self.simulator else
-                           "Read-only connection. Robot control is unavailable in this preview.")
+                           "Read-only connection. Robot control is unavailable in this development build.")
         except (OSError, BridgeError, ValueError) as exc:
             self.armed = False
             self.pulse = None
@@ -220,9 +219,9 @@ class ExplorerBridge:
             self._refresh()
             now = time.monotonic()
             return {
-                "backend": "microduck" if self.rpc else "preview",
-                "target": "simulator" if self.simulator else "read-only" if self.rpc else "preview",
-                "target_label": "User-declared simulator" if self.simulator else "Read-only endpoint" if self.rpc else "Character preview",
+                "backend": "microduck" if self.rpc else "disconnected",
+                "target": "simulator" if self.simulator else "read-only" if self.rpc else "disconnected",
+                "target_label": "User-declared simulator" if self.simulator else "Read-only endpoint" if self.rpc else "No endpoint",
                 "connected": bool(self.rpc and self.rpc.connected), "armed": self.armed,
                 "control_allowed": bool(self.simulator), "detail": self.detail,
                 "csrfToken": self.csrf_token, "token": self.csrf_token,
@@ -390,7 +389,7 @@ class ExplorerBridge:
                     continue
                 now = time.monotonic()
                 if now >= self.expires_at:
-                    self.pause("Explorer paused because its browser heartbeat stopped.")
+                    self.pause("Explorer paused because its client heartbeat stopped.")
                     continue
                 try:
                     self._check_state()
@@ -414,8 +413,8 @@ class ExplorerBridge:
             self.worker.join(timeout=2)
 
 
-class ExplorerHandler(SimpleHTTPRequestHandler):
-    server_version = "CuriousExplorer/0.1"
+class ExplorerHandler(BaseHTTPRequestHandler):
+    server_version = "CuriousExplorer/0.2-dev"
 
     def end_headers(self):
         self.send_header("X-Content-Type-Options", "nosniff")
@@ -434,21 +433,20 @@ class ExplorerHandler(SimpleHTTPRequestHandler):
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(data)))
         self.end_headers()
-        self.wfile.write(data)
+        if self.command != "HEAD":
+            self.wfile.write(data)
 
     def do_GET(self):
         if not self._host_valid():
             return self._json({"error": "Unrecognized local host."}, 403)
         if urlsplit(self.path).path == "/api/status":
             return self._json(self.server.bridge.status())
-        if urlsplit(self.path).path.startswith("/api/"):
-            return self._json({"error": "Unknown endpoint."}, 404)
-        return super().do_GET()
+        return self._json({"error": "Unknown endpoint. This development API serves no web interface."}, 404)
 
     def do_HEAD(self):
         if not self._host_valid():
             return self._json({"error": "Unrecognized local host."}, 403)
-        return super().do_HEAD()
+        return self.do_GET()
 
     def do_POST(self):
         try:
@@ -456,12 +454,12 @@ class ExplorerHandler(SimpleHTTPRequestHandler):
                 raise BridgeError("Unrecognized local host.", 403)
             origin = self.headers.get("Origin")
             if origin is not None and origin != "http://" + self.headers["Host"]:
-                raise BridgeError("Open Explorer directly in its local browser tab.", 403)
+                raise BridgeError("Use a same-origin local API client.", 403)
             if self.headers.get("Sec-Fetch-Site") == "cross-site":
                 raise BridgeError("Cross-site requests are not allowed.", 403)
             token = self.headers.get("X-Explorer-Token", "")
             if not secrets.compare_digest(token, self.server.bridge.csrf_token):
-                raise BridgeError("Refresh Explorer to renew its local session token.", 403)
+                raise BridgeError("Read /api/status to obtain the local session token.", 403)
             if self.headers.get_content_type() != "application/json":
                 raise BridgeError("Use a JSON request body.", 415)
             length = int(self.headers.get("Content-Length", "0"))
@@ -495,40 +493,36 @@ class ExplorerHandler(SimpleHTTPRequestHandler):
         return
 
 
-def make_server(bridge, web_dir, port=8765):
-    handler = functools.partial(ExplorerHandler, directory=str(web_dir))
-    server = ThreadingHTTPServer(("127.0.0.1", port), handler)
+def make_server(bridge, port=8765):
+    server = ThreadingHTTPServer(("127.0.0.1", port), ExplorerHandler)
     server.daemon_threads = True
     server.bridge = bridge
     return server
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Meet Curious Explorer in a local character preview.")
-    parser.add_argument("--port", type=int, default=8765, help="Local browser port (default: 8765)")
+    parser = argparse.ArgumentParser(description="Run the experimental Curious Explorer development API. No web interface or robot installer is included.")
+    parser.add_argument("--port", type=int, default=8765, help="Local API port (default: 8765)")
     parser.add_argument("--socket", help="Existing robotd Unix socket; read-only unless --simulator is declared")
     parser.add_argument("--simulator", action="store_true", help="Explicitly declare that this socket belongs to a simulator, never a physical robot")
-    parser.add_argument("--web-dir", type=Path, default=Path(__file__).resolve().parent.parent / "web", help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
     if args.simulator and not args.socket:
         parser.error("--simulator requires --socket pointing to the official local simulator")
     if not 1 <= args.port <= 65535:
         parser.error("--port must be between 1 and 65535")
-    if not (args.web_dir / "index.html").is_file():
-        parser.error("The web directory is missing. Run from a complete Curious Explorer source download.")
     bridge = ExplorerBridge(args.socket, args.simulator)
     try:
-        server = make_server(bridge, args.web_dir, args.port)
+        server = make_server(bridge, args.port)
     except OSError as exc:
         bridge.close()
-        parser.error(f"Cannot start the local preview: {exc}")
-    print(f"Curious Explorer is ready at http://127.0.0.1:{args.port}")
+        parser.error(f"Cannot start the development API: {exc}")
+    print(f"Curious Explorer development API: http://127.0.0.1:{args.port}/api/status")
     if args.simulator:
         print("Target: user-declared simulator. Control stays paused until you explicitly start a session.")
     elif args.socket:
         print("Target: read-only endpoint. Physical robot control is not available in this version.")
     else:
-        print("Character preview only. No account, simulator, or robot is needed.")
+        print("No endpoint connected. No browser interface or installable persona is included.")
     try:
         server.serve_forever()
     except KeyboardInterrupt:

@@ -1,9 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { Explorer, DEFAULT_SETTINGS, PREVIEW_SKILLS } from '../web/engine.js';
+import { Explorer, DEFAULT_SETTINGS } from '../src/engine.js';
+import { FIXTURE_SKILLS } from './fixtures/skills.js';
 
 const clock = () => new Date('2026-10-23T14:00:00.000Z');
-const makeExplorer = (options = {}) => new Explorer({ clock, ...options });
+const makeExplorer = (options = {}) => {
+  const explorer = new Explorer({ clock, ...options });
+  explorer.setSkills(FIXTURE_SKILLS);
+  return explorer;
+};
 const advance = (explorer, seconds) => Array.from({ length: seconds }, () => explorer.tick(1)).flat();
 
 test('the persona preserves the owner inventory throughout its lifecycle', () => {
@@ -18,7 +23,7 @@ test('the persona preserves the owner inventory throughout its lifecycle', () =>
   explorer.pause();
   explorer.resetMemory();
   assert.deepEqual(explorer.snapshot().skills, installed);
-  assert.equal(PREVIEW_SKILLS[0].id, 'custom-gait');
+  assert.equal(FIXTURE_SKILLS[0].id, 'custom-gait');
   assert.equal(explorer.installSkill, undefined);
   assert.equal(explorer.removeSkill, undefined);
 });
@@ -174,4 +179,13 @@ test('memory restore accepts only simple nonpersonal counters and known notes', 
     sessions: 1,
     notes: ['Received a greeting.'],
   });
+});
+
+test('a new character has no invented installed skills', () => {
+  const explorer = new Explorer({ clock });
+  assert.deepEqual(explorer.snapshot().skills, []);
+  explorer.setAllowedSkills(['polite-bow']);
+  explorer.start();
+  explorer.observe('greeting');
+  assert.ok(explorer.tick().every(action => action.kind !== 'skill'));
 });

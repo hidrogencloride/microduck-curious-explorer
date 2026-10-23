@@ -1,11 +1,16 @@
 {
   "name": "curious-explorer",
-  "version": "0.1.0",
+  "version": "0.2.0-dev.0",
   "private": true,
   "type": "module",
   "description": "A gentle, additive character for Microduck. Start with a little curiosity.",
   "scripts": {
     "test": "node --test tests/engine.test.mjs",
-    "start": "python3 -m explorer"
-  }
+    "bridge": "python3 -m explorer"
+  },
+  "files": [
+    "src/",
+    "LICENSE",
+    "README.md"
+  ]
 }

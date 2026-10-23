@@ -1,52 +1,44 @@
 # A good guest on your duck
 
-Curious Explorer is being built to add character while respecting everything an owner has already installed. Its first release makes that boundary small and inspectable.
+Curious Explorer is being built to add character while respecting the software an owner already uses. Its boundaries should be explicit and testable.
 
-## What works in this release
+## Current status
 
-| Environment | Status | What it means |
-| --- | --- | --- |
-| Local browser preview | Available | Run the app, supply synthetic observations, and explore the character’s decisions. No robot connection. |
-| Local official Microduck simulator | Experimental bridge | Protocol-fixture tests only. A running official simulator has not been validated. Requires separate setup. |
-| Physical Microduck | Unsupported | No hardware operation has been tested. This release is for the browser rehearsal and simulator development. |
-| Permanent installation on a duck | Planned | No one-click installer, boot service, or owner-ready onboarding yet. |
-| Real camera or microphone input | Not included | The preview receives events from its controls, not from sensors. |
-
-## What the preview touches
-
-The application serves files from this project on your computer and uses its own browser data for the explorer’s name, preferences, allowed skill choices, and simple encounter memories. The default startup does not discover a robot, ask for account credentials, install a system service, or write to robot configuration.
-
-The browser storage key is `curious-explorer:v1`. **Begin a fresh field journal** clears encounter memories while preserving settings and skill choices. Clearing this app’s site data clears all of its saved browser data. The preview does not access a camera or microphone, and it does not play its sound cues as audio.
-
-Deleting the project and clearing the app’s browser site data removes the local preview. Unrelated files, other websites’ data, and robot software are outside that removal path.
+| Component | Status |
+| --- | --- |
+| Behavior core | Development code, exercised with synthetic observations and fixture skills. No real perception. |
+| Local connector | Experimental, targets Microduck API 44; verified against protocol fixtures only. |
+| Official Microduck simulator | Integration validation outstanding. |
+| Physical Microduck | Unsupported; no hardware operation has been tested. |
+| Onboard installation, updates, and removal | Not implemented or validated. |
+| Browser demonstration | Separated from the current product repository and download path. Local development tool only. |
 
 ## Skills remain the owner’s
 
-Explorer does not ship a replacement walking policy. It does not add, rename, delete, or download robot skills. Its optional adapter is limited to requesting actions through an existing service.
+Explorer does not ship a replacement walking policy. Its connector cannot add, rename, delete, or download robot skills. It also cannot edit robot configuration or controller buttons.
 
-Preserving files does not guarantee that every future third-party skill can be used by the character. A skill must expose a compatible action and be selected deliberately before Explorer can rely on it. Missing abilities should produce a smaller reaction or a clear explanation, never an unexpected installation.
+A fresh behavior core has no installed skills. An integration must supply the endpoint’s actual inventory and separately grant permission for a compatible gesture. Test fixtures are never the default inventory.
 
-The full compatibility goal includes both file preservation and behavior compatibility. File preservation can be checked now; a hardware compatibility promise must wait for hardware testing.
+Preserving files does not guarantee that every third-party skill can be used by the character. Missing or incompatible abilities should produce a smaller reaction, not an unexpected installation.
 
-## One session, one controller
+## Control is a separate responsibility
 
-An active character may issue action commands. Pausing ends its decisions and asks the endpoint to stop continuous movement. A discrete skill already running may finish. Pause is not an emergency stop.
+The experimental connector requires an explicit session and an operator-declared simulator before enabling commands. Other controllers must be stopped for that session. The `--simulator` flag is an operator attestation; the connector cannot independently prove the target type.
 
-For simulator development, give Explorer a dedicated session and stop other control programs first. Pause or stop Explorer before using another controller. Do not assume that a gamepad press automatically pauses the character: that handoff is not implemented or verified in this release.
+A five-second lease must be renewed by the development client. Pause stops new requests and asks the endpoint to stop continuous movement. A discrete skill already underway may finish. This is not an emergency stop or evidence of physical stopping behavior.
 
-The bridge requires Microduck API 44, an explicit `--simulator` declaration, and confirmation of an exclusive session in the interface before it enables control. This flag is the operator’s attestation; the protocol cannot prove that an endpoint is simulated. Physical operation is unsupported. Without `--simulator`, a supplied socket remains read-only.
+Automatic controller takeover has not been implemented or verified. Physical operation remains unsupported.
 
-The active bridge session requires a browser heartbeat and expires after five seconds without renewal. This limits continued command generation; it is not proof of the endpoint’s actual stopping behavior after a network or process failure.
+## Data and removal
 
-The upstream [robot daemon design](https://github.com/pollen-robotics/microduck/blob/main/docs/design/robotd-design.md) describes its control model. Our adapter should remain explicit about ownership rather than infer that another client has taken over.
+The behavior core keeps its state in memory and returns detached snapshots. Persistence is the host integration’s responsibility. The source components do not create an account, install a background service, or write robot settings.
 
-## A removal check you can repeat
+Stopping the development process and removing its project folder removes these local components. Existing robot software is outside that path. A future installer must have a separately tested removal procedure before it is offered to owners.
 
-1. Before starting, note the existing files in your robot or simulator setup. Keep this project in its own folder.
-2. Run the local preview, try a few observations, and save any preferences you want to keep.
-3. Stop the server with Control-C. Clear the preview’s browser site data and delete the project folder.
-4. Verify that the original robot or simulator files are unchanged and its existing controls still work.
+## Evidence needed before release
 
-For bridge testing, take a separate snapshot of the simulator’s skill and configuration directories before the session. Compare them afterward. Include active, paused, disconnect, and process-exit cases. Passing a mocked adapter test is useful evidence for software boundaries; it does not replace this integration check or a later hardware test.
+Validate the supported add-on installation mechanism and pin a compatible upstream version. Compare skill and configuration snapshots before and after simulator sessions, including pause, disconnect, and process-exit cases. Then test the same boundaries on hardware, along with updates and removal.
+
+Protocol fixtures support development; they do not replace integration or hardware testing.
 
 [Back to Curious Explorer](../README.md)

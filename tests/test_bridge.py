@@ -244,10 +244,10 @@ class BridgeTests(unittest.TestCase):
             self.bridge.action({"kind": "sound", "name": "mystery"})
         self.assertFalse(any(m["method"] == "robot.sound" for m in self.robot.messages))
 
-    def test_preview_never_connects_or_arms(self):
+    def test_disconnected_api_never_connects_or_arms(self):
         preview = ExplorerBridge()
         try:
-            self.assertEqual(preview.status()["backend"], "preview")
+            self.assertEqual(preview.status()["backend"], "disconnected")
             self.assertFalse(preview.status()["connected"])
             with self.assertRaises(BridgeError):
                 preview.arm(True, exclusive=True)
@@ -257,10 +257,8 @@ class BridgeTests(unittest.TestCase):
 
 class HttpBoundaryTests(unittest.TestCase):
     def setUp(self):
-        self.directory = tempfile.TemporaryDirectory(prefix="explorer-http-", dir="/tmp")
-        Path(self.directory.name, "index.html").write_text("<title>Explorer fixture</title>")
         self.bridge = ExplorerBridge()
-        self.server = make_server(self.bridge, self.directory.name, port=0)
+        self.server = make_server(self.bridge, port=0)
         self.port = self.server.server_address[1]
         self.worker = threading.Thread(target=self.server.serve_forever, daemon=True)
         self.worker.start()
@@ -270,7 +268,6 @@ class HttpBoundaryTests(unittest.TestCase):
         self.server.server_close()
         self.bridge.close()
         self.worker.join(timeout=1)
-        self.directory.cleanup()
 
     def request(self, method="POST", route="/api/pause", headers=None, body="{}"):
         client = http.client.HTTPConnection("127.0.0.1", self.port)
@@ -280,6 +277,12 @@ class HttpBoundaryTests(unittest.TestCase):
             return result.status, json.loads(result.read())
         finally:
             client.close()
+
+    def test_browser_demo_routes_are_not_served(self):
+        for route in ("/", "/index.html", "/guide.html", "/src/engine.js"):
+            status, response = self.request(method="GET", route=route)
+            self.assertEqual(status, 404)
+            self.assertIn("no web interface", response["error"])
 
     def test_missing_token_is_refused(self):
         status, _ = self.request(headers={"Content-Type": "application/json"})

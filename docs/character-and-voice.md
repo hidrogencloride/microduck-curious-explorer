@@ -24,7 +24,7 @@ This is one character people can choose for their duck. Its identity should feel
 | A quiet interval | “Plenty of time.” | Rest, with occasional gentle attention shifts. |
 | The owner takes control | “Over to you.” | Yield promptly and remain paused. |
 
-These are design intentions. Availability on a real robot depends on verified sensors, compatible skills, and the owner’s settings. The preview illustrates the intentions with synthetic events.
+These are design intentions. Availability on a real robot depends on verified sensors, compatible skills, and the owner’s settings. The separate internal rehearsal illustrates these intentions with synthetic events. It is not distributed with the persona.
 
 ## Words that feel like Explorer
 
@@ -62,7 +62,7 @@ Motion should feel deliberate. Respect reduced-motion preferences, avoid constan
 
 ## Consistency in public
 
-Use **Curious Explorer** for the product, **Explorer** after the first mention, and **Microduck** for the robot platform. Use **preview** for this release. Keep the same measured voice in the app, README, download instructions, screenshots, and release notes.
+Use **Curious Explorer** for the product, **Explorer** after the first mention, and **Microduck** for the robot platform. Use **in development** for the current source. Reserve **release** and installation instructions for a tested persona package. Keep the same measured voice in the README, documentation, and eventual installation flow.
 
 Describe the relationship plainly: “An independent character project for Microduck.” Do not use official logos or imply affiliation with Pollen Robotics, Hugging Face, or NVIDIA.
 

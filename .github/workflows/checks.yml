@@ -1,4 +1,4 @@
-name: Preview checks
+name: Development checks
 
 on:
   push:
@@ -22,5 +22,5 @@ jobs:
         run: npm test
       - name: Local bridge
         run: python -m unittest discover -s tests -p 'test_*.py'
-      - name: Build standalone Spaces preview
-        run: python scripts/build-space.py --output "$RUNNER_TEMP/curious-explorer-space"
+      - name: Check product distribution boundary
+        run: python scripts/check_distribution.py

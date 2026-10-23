@@ -1,9 +1,8 @@
 [project]
 name = "curious-explorer-microduck"
-version = "0.1.0"
-description = "An additive Curious Explorer character preview for Microduck"
+version = "0.2.0.dev0"
+description = "Curious Explorer development source for an additive Microduck character"
 requires-python = ">=3.11"
 dependencies = []
 
-# v0.1 runs from a complete source download: python3 -m explorer.
-# A signed desktop installer and wheel distribution are not shipped yet.
+# Development source only. No owner-ready installation package is published.

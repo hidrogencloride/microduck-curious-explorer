@@ -12,3 +12,11 @@ dist/
 .env.*
 !.env.example
 work/
+
+# Internal browser demonstrations belong outside this checkout.
+web/
+demo/
+demos/
+internal-demo/
+*.html
+*.htm

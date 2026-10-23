@@ -27,27 +27,6 @@ export const DEFAULT_SETTINGS = Object.freeze({
   sounds: true,
 });
 
-/** Example inventory for the practice field, not a discovered robot inventory. */
-export const PREVIEW_SKILLS = Object.freeze([
-  Object.freeze({
-    id: 'custom-gait',
-    name: 'Custom walking style',
-    label: 'Custom walking style',
-    description: 'An example owner-installed gait. Explorer leaves it in place.',
-    kind: 'gait',
-    preview: true,
-  }),
-  Object.freeze({
-    id: 'polite-bow',
-    name: 'Polite bow',
-    label: 'Polite bow',
-    description: 'An example greeting skill. Used only with your permission.',
-    kind: 'skill',
-    role: 'greeting',
-    preview: true,
-  }),
-]);
-
 const OBSERVATIONS = ['movement', 'object', 'greeting', 'obstacle'];
 const MODES = new Set(['paused', 'exploring', 'resting', 'waiting']);
 const clone = (value) => JSON.parse(JSON.stringify(value));
@@ -134,7 +113,7 @@ export class Explorer {
     this._settings = cleanSettings(settings);
     this._memory = cleanMemory(memory);
     this._clock = typeof clock === 'function' ? clock : () => new Date();
-    this._skills = cleanSkills(PREVIEW_SKILLS);
+    this._skills = [];
     this._allowedSkills = [];
     this._mode = 'paused';
     this._mood = 'Ready when you are';
