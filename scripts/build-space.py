@@ -201,7 +201,7 @@ A thoughtful character for Microduck, with a soft spot for small discoveries.
 Meet it in an illustrated practice field: introduce a rustling leaf, a new object,
 or a friendly hello, and watch its curiosity unfold.
 
-Choose **Let’s explore** to begin. No robot, account, or AI subscription is needed.
+Choose **Let’s explore** to begin. No robot or AI subscription is needed.
 The **Field guide** explains the character, its memories, and the next steps.
 
 ## Your duck keeps what it knows
