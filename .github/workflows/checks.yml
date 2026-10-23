@@ -1,0 +1,26 @@
+name: Preview checks
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Character behavior
+        run: npm test
+      - name: Local bridge
+        run: python -m unittest discover -s tests -p 'test_*.py'
+      - name: Build standalone Spaces preview
+        run: python scripts/build-space.py --output "$RUNNER_TEMP/curious-explorer-space"

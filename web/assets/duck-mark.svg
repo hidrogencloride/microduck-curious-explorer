@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Curious Explorer</title>
+  <desc id="desc">A compact original duck robot emblem in moss green, warm ivory, and citron.</desc>
+  <rect x="5" y="5" width="150" height="150" rx="44" fill="#F6F3E9"/>
+  <g stroke="#20372B" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M87 98L98 114L89 136" stroke-width="10"/><path d="M83 136H103" stroke="#B36F4B" stroke-width="9"/>
+    <path d="M49 77L91 72L104 97L62 108L47 94Z" fill="#4E6B50"/>
+    <path d="M62 104L69 119L61 139" stroke-width="11"/><path d="M55 139H77" stroke="#E8CB47" stroke-width="10"/>
+    <circle cx="69" cy="119" r="5" fill="#F6F3E9" stroke-width="3"/>
+    <path d="M80 76L86 63" stroke-width="10"/>
+    <g transform="rotate(9 83 51)"><rect x="39" y="27" width="75" height="48" rx="12" fill="#829777"/><path d="M59 34H108Q119 34 119 45V68Q119 77 109 77H65Q55 77 55 67V44Q55 34 59 34Z" fill="#F6F3E9"/><rect x="62" y="41" width="49" height="26" rx="7" fill="#20372B" stroke="none"/><circle cx="97" cy="54" r="8" fill="#829777" stroke="none"/><circle cx="95" cy="52" r="3" fill="#F6F3E9" stroke="none"/><path d="M111 66H132L137 75H114Z" fill="#E8CB47" stroke-width="3"/></g>
+  </g>
+</svg>

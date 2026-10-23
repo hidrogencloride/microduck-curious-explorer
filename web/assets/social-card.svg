@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Curious Explorer — A little curiosity. A lot of character.</title>
+<desc id="desc">A field-guide cover with an original small moss-green robot studying a leaf. Curious Explorer is an independent character project for Microduck, version 0.1.0 preview.</desc>
+<rect width="1200" height="630" fill="#F6F3E9"/>
+<svg xmlns="http://www.w3.org/2000/svg" x="510" y="14" width="690" height="596" viewBox="350 70 820 640" aria-hidden="true">
+  <defs>
+    <pattern id="grain" width="23" height="23" patternUnits="userSpaceOnUse"><circle cx="3" cy="5" r=".7" fill="#20372B" opacity=".075" /><circle cx="16" cy="17" r=".65" fill="#20372B" opacity=".05" /></pattern>
+    <linearGradient id="shell" x1="410" y1="210" x2="730" y2="500" gradientUnits="userSpaceOnUse"><stop stop-color="#789076" /><stop offset="1" stop-color="#4E6B50" /></linearGradient>
+    <linearGradient id="beak" x1="751" y1="321" x2="824" y2="379" gradientUnits="userSpaceOnUse"><stop stop-color="#E8CB47" /><stop offset="1" stop-color="#D4AC36" /></linearGradient>
+  </defs>
+  <rect width="1200" height="750" rx="32" fill="#F6F3E9" />
+  <rect width="1200" height="750" rx="32" fill="url(#grain)" />
+  <g stroke="#4E6B50" stroke-width="1.4" opacity=".16">
+    <path d="M0 266C149 178 197 308 296 260S447 125 488 0" />
+    <path d="M0 291C157 199 199 337 311 283S472 143 514 0" />
+    <path d="M0 316C164 224 203 365 328 306S496 164 542 0" />
+    <path d="M0 342C174 249 207 392 344 331S522 184 569 0" />
+    <path d="M998 0C960 108 1060 158 1034 241S1144 347 1200 312" />
+    <path d="M1024 0C989 102 1088 157 1060 235S1156 315 1200 288" />
+    <path d="M1049 0C1018 99 1114 156 1087 228S1170 287 1200 262" />
+  </g>
+  <circle cx="690" cy="336" r="233" fill="#E8CB47" opacity=".12" />
+  <circle cx="690" cy="336" r="214" stroke="#20372B" stroke-width="1.2" stroke-dasharray="3 9" opacity=".15" />
+  <path d="M85 547C331 498 685 520 1119 572" stroke="#BEBFAE" stroke-width="1.5" />
+  <path d="M145 589C412 554 770 571 1060 610M266 637C470 617 731 625 943 647" stroke="#D5D4C5" stroke-width="1.3" />
+  <ellipse cx="607" cy="573" rx="218" ry="39" fill="#20372B" opacity=".08" />
+  <ellipse cx="600" cy="573" rx="158" ry="20" fill="#20372B" opacity=".07" />
+  <g stroke="#20372B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+
+    <path d="M627 416L659 468L631 536" stroke-width="37" />
+    <path d="M627 416L659 468L631 536" stroke="#7C8A72" stroke-width="26" />
+    <circle cx="659" cy="468" r="24" fill="#D9DBCA" />
+    <circle cx="659" cy="468" r="9" fill="#4E6B50" stroke-width="3" />
+    <path d="M613 531H651L691 552Q700 558 692 571L603 570Q591 568 596 555Z" fill="#BC9242" />
+    <path d="M603 558L680 559" stroke-width="3" opacity=".5" />
+
+    <path d="M494 316L604 303Q629 303 650 321L678 373Q684 401 659 420L526 442Q502 445 489 424L470 365Q464 334 494 316Z" fill="#3C5843" />
+    <path d="M491 324L578 314Q600 312 612 329L638 389Q644 413 620 423L523 439Q501 440 491 419L475 367Q468 340 491 324Z" fill="url(#shell)" />
+    <path d="M485 367L625 345" stroke="#A8B49A" stroke-width="2" opacity=".6" />
+    <path d="M506 395L539 391" stroke="#D6DFC6" stroke-width="3" />
+    <circle cx="575" cy="389" r="20" fill="#E8CB47" stroke-width="2.5" />
+    <path d="M575 374L580 389L575 404L570 389Z" fill="#20372B" stroke="none" />
+    <circle cx="575" cy="389" r="3" fill="#F6F3E9" stroke="none" />
+
+    <circle cx="523" cy="423" r="27" fill="#D4D8C6" />
+    <circle cx="523" cy="423" r="11" fill="#4E6B50" stroke-width="3" />
+    <path d="M525 448L551 493L527 551" stroke-width="38" />
+    <path d="M525 448L551 493L527 551" stroke="#E1E4D3" stroke-width="27" />
+    <path d="M532 454L545 480" stroke="#A8B49A" stroke-width="4" />
+    <circle cx="551" cy="493" r="25" fill="#F0EFDF" />
+    <circle cx="551" cy="493" r="10" fill="#4E6B50" stroke-width="3" />
+    <path d="M509 544H544L588 568Q600 576 588 587L495 586Q481 582 491 565Z" fill="#E8CB47" />
+    <path d="M498 572L578 576" stroke-width="3" opacity=".5" />
+
+    <path d="M592 318L610 280" stroke-width="36" />
+    <path d="M592 318L610 280" stroke="#D4D8C6" stroke-width="25" />
+    <g transform="rotate(10 629 269)">
+      <path d="M508 187L664 169Q690 167 704 185L742 232L735 324L580 342Q553 343 539 322L503 268Q492 248 495 225L497 204Q498 191 508 187Z" fill="#405C45" />
+      <path d="M511 187L655 171Q677 169 691 184L718 216L561 238L500 215Q496 195 511 187Z" fill="#8FA286" />
+      <path d="M568 229L717 211Q738 210 745 230L756 296Q760 320 737 324L589 344Q566 347 559 325L546 259Q543 234 568 229Z" fill="#F0EFDF" />
+      <path d="M584 244L714 228Q728 226 731 242L738 282Q740 299 724 301L594 319Q580 320 578 305L570 263Q568 246 584 244Z" fill="#20372B" stroke="none" />
+      <circle cx="687" cy="269" r="23" fill="#627F73" stroke="#101F1A" stroke-width="4" />
+      <circle cx="687" cy="269" r="13" fill="#152C25" stroke="none" />
+      <circle cx="680" cy="263" r="5" fill="#F6F3E9" stroke="none" />
+      <circle cx="603" cy="280" r="5" fill="#B5C4AA" stroke="none" />
+      <path d="M725 303L789 304Q807 305 810 320L808 329L738 335Z" fill="url(#beak)" />
+      <path d="M739 336L805 330L795 343L746 349Z" fill="#B36F4B" stroke-width="4" />
+      <path d="M509 241L525 239M513 254L529 252M517 267L533 265" stroke="#A8B49A" stroke-width="3" />
+      <circle cx="574" cy="329" r="3" fill="#8A9983" stroke="none" />
+      <circle cx="733" cy="315" r="3" fill="#8A9983" stroke="none" />
+    </g>
+  </g>
+
+  <ellipse cx="891" cy="574" rx="57" ry="9" fill="#20372B" opacity=".07" />
+  <path d="M873 557C857 522 883 491 927 490C924 533 908 557 873 557Z" fill="#A9B58A" stroke="#4E6B50" stroke-width="3" stroke-linejoin="round" />
+  <path d="M862 575L911 508M883 545L883 525M894 531L910 529" stroke="#4E6B50" stroke-width="2.5" stroke-linecap="round" />
+  <path d="M816 402C858 423 876 447 882 473" stroke="#B36F4B" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 8" />
+  <path d="M871 464L883 476L887 460" stroke="#B36F4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <g stroke="#20372B" stroke-width="1.5" opacity=".45"><path d="M1085 70H1105M1095 60V80" /><circle cx="1095" cy="70" r="23" /><path d="M67 126H112M67 642H112" /></g>
+  <g fill="#B36F4B"><circle cx="344" cy="568" r="3" /><circle cx="324" cy="580" r="2" /><circle cx="1003" cy="557" r="3" /></g>
+</svg>
+<path d="M62 71H105" stroke="#4E6B50" stroke-width="2"/>
+<text x="62" y="112" font-family="Arial, Helvetica, sans-serif" font-size="15" letter-spacing="3" fill="#20372B">CURIOUS EXPLORER</text>
+<g font-family="Georgia, 'Times New Roman', serif" font-size="61" fill="#20372B"><text x="58" y="241">A little curiosity.</text><text x="58" y="315">A lot of character.</text></g>
+<text x="62" y="374" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#4E6B50">An independent character for Microduck.</text>
+<rect x="62" y="421" width="181" height="34" rx="17" fill="#20372B"/>
+<circle cx="80" cy="438" r="3" fill="#E8CB47"/>
+<text x="93" y="442" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="1.3" fill="#F6F3E9">0.1.0 / PREVIEW</text>
+<path d="M62 556H1138" stroke="#20372B" stroke-opacity=".2"/>
+<text x="62" y="590" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="2" fill="#4E6B50">SMALL DISCOVERIES. GREAT COMPANY.</text>
+<text x="1138" y="590" text-anchor="end" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="2" fill="#4E6B50">FIELD NOTE / 001</text>
+</svg>
