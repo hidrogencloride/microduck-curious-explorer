@@ -1,0 +1,91 @@
+{
+  "upstream": "ad9d41a763f30dc770817c33d92dcfec0205db1e",
+  "date": "2026-10-23",
+  "method": "Matched 4-second simulated holds; reset and two-second settle before each run. Keyboard baseline replays ArrowUp events through stock KeyboardSource. Engine scenarios inject observations.",
+  "scenarios": [
+    {
+      "name": "keyboard-0.25-neutral",
+      "result": "Completed",
+      "maxDisplacement": 0.37862262865481594,
+      "pathLength": 0.56553437724867,
+      "maxSpeed": 0.2183494900955832,
+      "commandSimSeconds": 4.019999999999914,
+      "maxPolicyCommand": 0.25,
+      "simSeconds": 4.019999999999914,
+      "wallSeconds": 4.018,
+      "policyNamesUnchanged": true
+    },
+    {
+      "name": "adapter-0.25-neutral",
+      "result": "Completed",
+      "maxDisplacement": 0.37356525004174757,
+      "pathLength": 0.5529028391649202,
+      "maxSpeed": 0.2165948579941628,
+      "commandSimSeconds": 3.9999999999999147,
+      "maxPolicyCommand": 0.25,
+      "simSeconds": 4.019999999999914,
+      "wallSeconds": 4.023200000047684,
+      "policyNamesUnchanged": true
+    },
+    {
+      "name": "adapter-0.033-neutral",
+      "result": "Completed",
+      "maxDisplacement": 0.0013895755429842954,
+      "pathLength": 0.01007137569436674,
+      "maxSpeed": 0.008912606383419206,
+      "commandSimSeconds": 4.019999999999914,
+      "maxPolicyCommand": 0.032999999821186066,
+      "simSeconds": 4.019999999999914,
+      "wallSeconds": 4.0317000000476835,
+      "policyNamesUnchanged": true
+    },
+    {
+      "name": "adapter-0.15-neutral",
+      "result": "Completed",
+      "maxDisplacement": 0.007520339469539613,
+      "pathLength": 0.00905410896710996,
+      "maxSpeed": 0.03814516030920236,
+      "commandSimSeconds": 3.9999999999999147,
+      "maxPolicyCommand": 0.15000000596046448,
+      "simSeconds": 4.019999999999914,
+      "wallSeconds": 4.0595,
+      "policyNamesUnchanged": true
+    },
+    {
+      "name": "adapter-0.25-head",
+      "result": "Completed",
+      "maxDisplacement": 0.36369563526532245,
+      "pathLength": 0.5519267107108434,
+      "maxSpeed": 0.22507923038734629,
+      "commandSimSeconds": 4.019999999999914,
+      "maxPolicyCommand": 0.25,
+      "simSeconds": 4.019999999999914,
+      "wallSeconds": 4.050399999976158,
+      "policyNamesUnchanged": true
+    },
+    {
+      "name": "explorer-original-render-clock",
+      "result": "Completed",
+      "maxDisplacement": 0.0012317735892936402,
+      "pathLength": 0.04045467415520322,
+      "maxSpeed": 0.011706933991638581,
+      "commandSimSeconds": 2.9199999999997566,
+      "maxPolicyCommand": 0.032999999821186066,
+      "simSeconds": 16.820000000000267,
+      "wallSeconds": 18.01639999997616,
+      "policyNamesUnchanged": true
+    },
+    {
+      "name": "explorer-simulation-clock",
+      "result": "Completed",
+      "maxDisplacement": 0.0012416250344028776,
+      "pathLength": 0.04207301425044952,
+      "maxSpeed": 0.010114197898226318,
+      "commandSimSeconds": 3.139999999999734,
+      "maxPolicyCommand": 0.032999999821186066,
+      "simSeconds": 18.000000000000032,
+      "wallSeconds": 21.585200000047685,
+      "policyNamesUnchanged": true
+    }
+  ]
+}

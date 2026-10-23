@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "scenario": "scripted-18-second-check",
+  "upstream": "ad9d41a763f30dc770817c33d92dcfec0205db1e",
+  "profile": "stock-legs-0.25",
+  "result": "completed",
+  "observations": "scripted; no perception",
+  "robotConnectorTested": false,
+  "elapsed": 18,
+  "maxDisplacementMetres": 0.21078568116285012,
+  "pathMetres": 0.4052745730132679,
+  "maxPolicyForwardCommand": 0.25,
+  "obstacleCommandCleared": true,
+  "scriptedOwnerPaused": true,
+  "resumed": true,
+  "finalCommand": [
+    0,
+    0,
+    0
+  ],
+  "policyObjectsUnchanged": true,
+  "headTargetsRestored": true,
+  "oneSecondAfterStop": {
+    "policyForward": 0,
+    "speed": 0.0027194992116159077,
+    "displacement": 0.00011474308495561232
+  },
+  "evidence": "Summary read from the visible workshop report; intermediate samples omitted."
+}

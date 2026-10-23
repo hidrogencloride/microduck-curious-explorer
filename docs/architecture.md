@@ -88,7 +88,7 @@ The distribution check rejects browser pages, demo directories, and the old Spac
 
 The HTML rehearsal and its build tools have been removed from this repository. A local snapshot is retained outside the checkout for internal work. It is not part of the persona, CI artifacts, or default source downloads.
 
-The old `v0.1.0` demo tag is withdrawn. Historical private commits remain for traceability; they are not supported downloads. There is no replacement persona release yet.
+The old `v0.1.0` demo tag is withdrawn. Historical commits remain for traceability; they are not supported downloads. There is no replacement persona release yet.
 
 Future packaging must use an explicit component allowlist and a tested Microduck installation format. GitHub holds source and eventual releases. Hugging Face distribution will be added only if that format calls for it. A Space demo is not an installation mechanism.
 
@@ -101,5 +101,11 @@ The upstream main branch can change. Pin a tested commit when establishing compa
 - [Robot daemon design](https://github.com/pollen-robotics/microduck/blob/main/docs/design/robotd-design.md)
 - [Policy channels and skills](https://github.com/pollen-robotics/microduck/blob/main/docs/design/policy-channel-design.md)
 - [IPC protocol source](https://github.com/pollen-robotics/microduck/blob/main/duck-ipc-proto/src/lib.rs)
+
+## Browser sandbox workshop
+
+The simulation-only adapter in `src/sandbox-adapter.js` connects the behavior core to the official browser sandbox’s existing input controller. The optional attachment script adds local test controls to a pinned sandbox checkout; no HTML page or hosted demo is distributed here. [Setup, measured results, and limits](sandbox-testing.md).
+
+This path uses the sandbox’s JavaScript control interface. It does not exercise the Python connector or establish robot-daemon compatibility.
 
 [Back to Curious Explorer](../README.md)

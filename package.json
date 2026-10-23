@@ -5,7 +5,7 @@
   "type": "module",
   "description": "A gentle, additive character for Microduck. Start with a little curiosity.",
   "scripts": {
-    "test": "node --test tests/engine.test.mjs",
+    "test": "node --test tests/*.test.mjs",
     "bridge": "python3 -m explorer"
   },
   "files": [

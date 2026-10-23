@@ -16,19 +16,20 @@ One character, with a consistent temperament: observant, patient, and quietly pl
 
 **An installable persona is not available yet.** This repository contains development source, tests, and documentation. Downloading it does not install a character on a duck.
 
-The browser demonstration has been separated into a local development tool. It is not included in the current repository or intended persona downloads. The previous Hugging Face demonstration has been retired; Hugging Face is not currently an installation destination for this project.
+The original HTML rehearsal has been separated into a local development tool. It is not included in the current repository or intended persona downloads. The previous Hugging Face demonstration has been retired; Hugging Face is not currently an installation destination for this project.
 
-Before publishing an owner-ready package, we need to validate Microduck’s supported add-on installation mechanism, confirm compatibility in the official simulator, and test installation, updates, removal, and control handoff on hardware.
+Before publishing an owner-ready package, we need to validate Microduck’s supported add-on installation mechanism, validate the robot connector in the official daemon simulator, and test installation, updates, removal, and control handoff on hardware.
 
 [What to expect from installation →](docs/getting-started.md)
 
 ## What is here today
 
 - **Behavior core:** dependency-free JavaScript that turns supplied observations into character intentions. It starts with an empty skill inventory.
-- **Experimental connector:** a local development API targeting Microduck API 44. It has protocol-fixture tests; official simulator and hardware validation are still outstanding.
+- **Experimental connector:** a local development API targeting Microduck API 44. It has protocol-fixture tests; daemon-simulator and hardware validation are still outstanding.
+- **Browser sandbox adapter:** a simulation-only input source, with an optional local workshop for the pinned official sandbox. [Try it in simulation](docs/sandbox-testing.md).
 - **Tests and design documentation:** permission boundaries, pause behavior, memory handling, and the character’s voice and visual style.
 
-There is no browser app, hosted-demo builder, sensor perception, conversational AI, background startup service, or physical-robot installer in this development tree. The behavior core and connector are components for further integration, not a complete autonomous runtime.
+There is no standalone browser app, hosted-demo builder, sensor perception, conversational AI, background startup service, or physical-robot installer in this development tree. The browser workshop connects the behavior core to the official sandbox for scripted tests. The robot connector remains a separate component; this is not a complete autonomous robot runtime.
 
 ## Your duck stays yours
 

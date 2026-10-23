@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "scenario": "interactive-manual-takeover",
+  "upstream": "ad9d41a763f30dc770817c33d92dcfec0205db1e",
+  "profile": "stock-legs-0.25",
+  "result": "owner_control",
+  "input": "brief ArrowUp press immediately after Explore",
+  "finalCommand": [
+    0,
+    0,
+    0
+  ],
+  "policyObjectsUnchanged": true,
+  "headTargetsRestored": true,
+  "remainedPausedAfterRelease": true,
+  "oneSecondAfterStop": {
+    "policyForward": 0,
+    "speed": 0.0028670640819484475,
+    "displacement": 0.00011539263206873761
+  },
+  "evidence": "Summary read from the visible workshop report and paused status; this checks immediate takeover, not takeover during an active walking step."
+}

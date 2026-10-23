@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Keep internal browser demonstrations out of the tracked product source."""
+"""Keep standalone browser pages and the retired demo builder out of source."""
 from pathlib import Path
 import subprocess
 
@@ -14,4 +14,4 @@ for name in filter(None, tracked):
         forbidden.append(name)
 if forbidden:
     raise SystemExit("Development-demo files must stay outside the product repository:\n" + "\n".join(forbidden))
-print("Distribution boundary verified: no browser demo or hosted-demo builder is tracked.")
+print("Distribution boundary verified: no standalone browser pages or hosted-demo builder are tracked.")

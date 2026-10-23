@@ -1,0 +1,745 @@
+{
+  "schema": 1,
+  "scenario": "scripted-18-second-check",
+  "upstream": "ad9d41a763f30dc770817c33d92dcfec0205db1e",
+  "profile": "stock-legs-0.25",
+  "result": "completed",
+  "observations": "scripted; no perception",
+  "robotConnectorTested": false,
+  "elapsed": 18,
+  "maxDisplacementMetres": 0.18474189963394336,
+  "pathMetres": 0.37289680196986824,
+  "maxPolicyForwardCommand": 0.25,
+  "samples": [
+    {
+      "t": 0,
+      "position": [
+        -0.59869,
+        0.00032
+      ],
+      "speed": 0.00262,
+      "policyForward": 0
+    },
+    {
+      "t": 0.26,
+      "position": [
+        -0.59888,
+        0.00035
+      ],
+      "speed": 0.00223,
+      "policyForward": 0
+    },
+    {
+      "t": 0.52,
+      "position": [
+        -0.59867,
+        0.00037
+      ],
+      "speed": 0.00281,
+      "policyForward": 0
+    },
+    {
+      "t": 0.78,
+      "position": [
+        -0.59866,
+        0.00038
+      ],
+      "speed": 0.00287,
+      "policyForward": 0
+    },
+    {
+      "t": 1.04,
+      "position": [
+        -0.59883,
+        0.00042
+      ],
+      "speed": 0.00223,
+      "policyForward": 0
+    },
+    {
+      "t": 1.3,
+      "position": [
+        -0.59882,
+        0.00047
+      ],
+      "speed": 0.00131,
+      "policyForward": 0
+    },
+    {
+      "t": 1.56,
+      "position": [
+        -0.59873,
+        0.0004
+      ],
+      "speed": 0.00214,
+      "policyForward": 0
+    },
+    {
+      "t": 1.82,
+      "position": [
+        -0.5989,
+        0.00046
+      ],
+      "speed": 0.00344,
+      "policyForward": 0
+    },
+    {
+      "t": 2.08,
+      "position": [
+        -0.59877,
+        0.00043
+      ],
+      "speed": 0.0024,
+      "policyForward": 0
+    },
+    {
+      "t": 2.34,
+      "position": [
+        -0.59885,
+        0.00043
+      ],
+      "speed": 0.00307,
+      "policyForward": 0
+    },
+    {
+      "t": 2.6,
+      "position": [
+        -0.59861,
+        0.0005
+      ],
+      "speed": 0.01731,
+      "policyForward": 0.25
+    },
+    {
+      "t": 2.86,
+      "position": [
+        -0.58848,
+        0.00188
+      ],
+      "speed": 0.01213,
+      "policyForward": 0.25
+    },
+    {
+      "t": 3.12,
+      "position": [
+        -0.58737,
+        0.00229
+      ],
+      "speed": 0.01088,
+      "policyForward": 0.25
+    },
+    {
+      "t": 3.38,
+      "position": [
+        -0.58422,
+        0.01357
+      ],
+      "speed": 0.16182,
+      "policyForward": 0.25
+    },
+    {
+      "t": 3.64,
+      "position": [
+        -0.55513,
+        -0.00815
+      ],
+      "speed": 0.1162,
+      "policyForward": 0.25
+    },
+    {
+      "t": 3.9,
+      "position": [
+        -0.52721,
+        0.0124
+      ],
+      "speed": 0.13646,
+      "policyForward": 0.25
+    },
+    {
+      "t": 4.16,
+      "position": [
+        -0.51184,
+        0.00153
+      ],
+      "speed": 0.11182,
+      "policyForward": 0
+    },
+    {
+      "t": 4.42,
+      "position": [
+        -0.51475,
+        0.00235
+      ],
+      "speed": 0.0045,
+      "policyForward": 0
+    },
+    {
+      "t": 4.68,
+      "position": [
+        -0.5148,
+        0.00239
+      ],
+      "speed": 0.00053,
+      "policyForward": 0
+    },
+    {
+      "t": 4.94,
+      "position": [
+        -0.51431,
+        0.00255
+      ],
+      "speed": 0.00308,
+      "policyForward": 0
+    },
+    {
+      "t": 5.2,
+      "position": [
+        -0.51412,
+        0.00235
+      ],
+      "speed": 0.00433,
+      "policyForward": 0
+    },
+    {
+      "t": 5.46,
+      "position": [
+        -0.514,
+        0.00223
+      ],
+      "speed": 0.00202,
+      "policyForward": 0
+    },
+    {
+      "t": 5.72,
+      "position": [
+        -0.5144,
+        0.00218
+      ],
+      "speed": 0.00371,
+      "policyForward": 0
+    },
+    {
+      "t": 5.98,
+      "position": [
+        -0.51437,
+        0.00221
+      ],
+      "speed": 0.00021,
+      "policyForward": 0
+    },
+    {
+      "t": 6.24,
+      "position": [
+        -0.51448,
+        0.00213
+      ],
+      "speed": 0.00267,
+      "policyForward": 0
+    },
+    {
+      "t": 6.5,
+      "position": [
+        -0.51457,
+        0.00211
+      ],
+      "speed": 0.00243,
+      "policyForward": 0
+    },
+    {
+      "t": 6.76,
+      "position": [
+        -0.5145,
+        0.00218
+      ],
+      "speed": 0.00233,
+      "policyForward": 0
+    },
+    {
+      "t": 7.02,
+      "position": [
+        -0.51442,
+        0.0022
+      ],
+      "speed": 0.00152,
+      "policyForward": 0
+    },
+    {
+      "t": 7.28,
+      "position": [
+        -0.5144,
+        0.0022
+      ],
+      "speed": 0.00442,
+      "policyForward": 0
+    },
+    {
+      "t": 7.54,
+      "position": [
+        -0.51431,
+        0.00212
+      ],
+      "speed": 0.00146,
+      "policyForward": 0
+    },
+    {
+      "t": 7.8,
+      "position": [
+        -0.51,
+        0.00305
+      ],
+      "speed": 0.0648,
+      "policyForward": 0.25
+    },
+    {
+      "t": 8.06,
+      "position": [
+        -0.50624,
+        0.00378
+      ],
+      "speed": 0.07101,
+      "policyForward": 0
+    },
+    {
+      "t": 8.32,
+      "position": [
+        -0.51454,
+        0.00255
+      ],
+      "speed": 0.00317,
+      "policyForward": 0
+    },
+    {
+      "t": 8.58,
+      "position": [
+        -0.51476,
+        0.00278
+      ],
+      "speed": 0.00136,
+      "policyForward": 0
+    },
+    {
+      "t": 8.84,
+      "position": [
+        -0.5147,
+        0.00286
+      ],
+      "speed": 0.00051,
+      "policyForward": 0
+    },
+    {
+      "t": 9.1,
+      "position": [
+        -0.51432,
+        0.00289
+      ],
+      "speed": 0.00368,
+      "policyForward": 0
+    },
+    {
+      "t": 9.36,
+      "position": [
+        -0.51435,
+        0.00285
+      ],
+      "speed": 0.0026,
+      "policyForward": 0
+    },
+    {
+      "t": 9.62,
+      "position": [
+        -0.51429,
+        0.00285
+      ],
+      "speed": 0.00238,
+      "policyForward": 0
+    },
+    {
+      "t": 9.88,
+      "position": [
+        -0.51436,
+        0.00287
+      ],
+      "speed": 0.00187,
+      "policyForward": 0
+    },
+    {
+      "t": 10.14,
+      "position": [
+        -0.51433,
+        0.00286
+      ],
+      "speed": 0.00308,
+      "policyForward": 0
+    },
+    {
+      "t": 10.4,
+      "position": [
+        -0.51456,
+        0.00297
+      ],
+      "speed": 0.00163,
+      "policyForward": 0
+    },
+    {
+      "t": 10.66,
+      "position": [
+        -0.51426,
+        0.00297
+      ],
+      "speed": 0.00444,
+      "policyForward": 0
+    },
+    {
+      "t": 10.92,
+      "position": [
+        -0.51432,
+        0.00298
+      ],
+      "speed": 0.00364,
+      "policyForward": 0
+    },
+    {
+      "t": 11.18,
+      "position": [
+        -0.51429,
+        0.00299
+      ],
+      "speed": 0.00354,
+      "policyForward": 0
+    },
+    {
+      "t": 11.44,
+      "position": [
+        -0.51432,
+        0.00295
+      ],
+      "speed": 0.00269,
+      "policyForward": 0
+    },
+    {
+      "t": 11.7,
+      "position": [
+        -0.51455,
+        0.00301
+      ],
+      "speed": 0.00292,
+      "policyForward": 0
+    },
+    {
+      "t": 11.96,
+      "position": [
+        -0.51428,
+        0.00299
+      ],
+      "speed": 0.00294,
+      "policyForward": 0
+    },
+    {
+      "t": 12.22,
+      "position": [
+        -0.51453,
+        0.00302
+      ],
+      "speed": 0.00298,
+      "policyForward": 0
+    },
+    {
+      "t": 12.48,
+      "position": [
+        -0.51436,
+        0.00304
+      ],
+      "speed": 0.00221,
+      "policyForward": 0
+    },
+    {
+      "t": 12.74,
+      "position": [
+        -0.51442,
+        0.00307
+      ],
+      "speed": 0.00263,
+      "policyForward": 0
+    },
+    {
+      "t": 13,
+      "position": [
+        -0.51439,
+        0.00308
+      ],
+      "speed": 0.0028,
+      "policyForward": 0
+    },
+    {
+      "t": 13.26,
+      "position": [
+        -0.51437,
+        0.00311
+      ],
+      "speed": 0.00302,
+      "policyForward": 0
+    },
+    {
+      "t": 13.52,
+      "position": [
+        -0.51457,
+        0.00315
+      ],
+      "speed": 0.00162,
+      "policyForward": 0
+    },
+    {
+      "t": 13.78,
+      "position": [
+        -0.51434,
+        0.00308
+      ],
+      "speed": 0.00262,
+      "policyForward": 0
+    },
+    {
+      "t": 14.04,
+      "position": [
+        -0.51439,
+        0.00312
+      ],
+      "speed": 0.00192,
+      "policyForward": 0
+    },
+    {
+      "t": 14.3,
+      "position": [
+        -0.51441,
+        0.00317
+      ],
+      "speed": 0.0014,
+      "policyForward": 0
+    },
+    {
+      "t": 14.56,
+      "position": [
+        -0.51443,
+        0.00314
+      ],
+      "speed": 0.00311,
+      "policyForward": 0
+    },
+    {
+      "t": 14.82,
+      "position": [
+        -0.50483,
+        0.00497
+      ],
+      "speed": 0.02009,
+      "policyForward": 0.25
+    },
+    {
+      "t": 15.08,
+      "position": [
+        -0.50236,
+        0.00463
+      ],
+      "speed": 0.04133,
+      "policyForward": 0.25
+    },
+    {
+      "t": 15.34,
+      "position": [
+        -0.49109,
+        0.02376
+      ],
+      "speed": 0.14961,
+      "policyForward": 0.25
+    },
+    {
+      "t": 15.6,
+      "position": [
+        -0.46122,
+        0.0027
+      ],
+      "speed": 0.10624,
+      "policyForward": 0.25
+    },
+    {
+      "t": 15.86,
+      "position": [
+        -0.43492,
+        0.01797
+      ],
+      "speed": 0.18365,
+      "policyForward": 0.25
+    },
+    {
+      "t": 16.12,
+      "position": [
+        -0.41545,
+        0.02019
+      ],
+      "speed": 0.07979,
+      "policyForward": 0
+    },
+    {
+      "t": 16.38,
+      "position": [
+        -0.41791,
+        0.01595
+      ],
+      "speed": 0.00911,
+      "policyForward": 0
+    },
+    {
+      "t": 16.64,
+      "position": [
+        -0.41903,
+        0.01645
+      ],
+      "speed": 0.001,
+      "policyForward": 0
+    },
+    {
+      "t": 16.9,
+      "position": [
+        -0.41902,
+        0.01655
+      ],
+      "speed": 0.00186,
+      "policyForward": 0
+    },
+    {
+      "t": 17.16,
+      "position": [
+        -0.4188,
+        0.01675
+      ],
+      "speed": 0.00093,
+      "policyForward": 0
+    },
+    {
+      "t": 17.42,
+      "position": [
+        -0.41831,
+        0.01685
+      ],
+      "speed": 0.00213,
+      "policyForward": 0
+    },
+    {
+      "t": 17.68,
+      "position": [
+        -0.41835,
+        0.01666
+      ],
+      "speed": 0.00278,
+      "policyForward": 0
+    },
+    {
+      "t": 17.94,
+      "position": [
+        -0.41825,
+        0.01668
+      ],
+      "speed": 0.00249,
+      "policyForward": 0
+    }
+  ],
+  "events": [
+    {
+      "time": 3.659999999999944,
+      "type": "started"
+    },
+    {
+      "time": 3.6799999999999438,
+      "type": "action",
+      "kind": "look",
+      "pitch": 0.04,
+      "yaw": 0.4164992203900368
+    },
+    {
+      "time": 6.239999999999889,
+      "type": "action",
+      "kind": "move",
+      "requestedSpeed": 0.033,
+      "speed": 0.25,
+      "turn": 0,
+      "duration": 1.4
+    },
+    {
+      "time": 8.799999999999976,
+      "type": "action",
+      "kind": "look",
+      "pitch": 0.04,
+      "yaw": -0.38884216657764764
+    },
+    {
+      "time": 11.360000000000376,
+      "type": "action",
+      "kind": "move",
+      "requestedSpeed": 0.033,
+      "speed": 0.25,
+      "turn": 0,
+      "duration": 1.4
+    },
+    {
+      "time": 11.660000000000423,
+      "type": "action",
+      "kind": "stop",
+      "reason": "obstacle"
+    },
+    {
+      "time": 13.640000000000732,
+      "type": "paused",
+      "reason": "owner_control"
+    },
+    {
+      "time": 15.660000000001048,
+      "type": "started"
+    },
+    {
+      "time": 15.680000000001051,
+      "type": "action",
+      "kind": "look",
+      "pitch": 0.04,
+      "yaw": 0.3353645873018659
+    },
+    {
+      "time": 18.240000000000656,
+      "type": "action",
+      "kind": "move",
+      "requestedSpeed": 0.033,
+      "speed": 0.25,
+      "turn": 0,
+      "duration": 1.4
+    },
+    {
+      "time": 20.800000000000146,
+      "type": "action",
+      "kind": "look",
+      "pitch": 0.04,
+      "yaw": -0.25961758713955396
+    },
+    {
+      "time": 21.63999999999998,
+      "type": "paused",
+      "reason": "completed"
+    }
+  ],
+  "obstacleCommandCleared": true,
+  "scriptedOwnerPaused": true,
+  "resumed": true,
+  "finalCommand": [
+    0,
+    0,
+    0
+  ],
+  "policyObjectsUnchanged": true,
+  "headTargetsRestored": true,
+  "stopPosition": [
+    -0.4182877316055218,
+    0.0165787737278699
+  ],
+  "oneSecondAfterStop": {
+    "policyForward": 0,
+    "speed": 0.004484084950206817,
+    "displacement": 0.00013420409749682503
+  }
+}
